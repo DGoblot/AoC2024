@@ -5,7 +5,7 @@ input = input_file.readlines()
 res = 0
 goals = []
 numbers = []
-t = [0, 1]
+t = [0, 1, 2]
 
 for line in input:
     line = line.strip()
@@ -21,6 +21,8 @@ def compute(nb, op, goal):
                 tmp += int(nb[i+1])
             case 1:
                 tmp *= int(nb[i+1])
+            case 2:
+                tmp = int(str(tmp)+nb[i+1])
         if tmp > goal:
             return 0
     return tmp
@@ -32,7 +34,7 @@ for i in range(len(goals)):
     operations = itertools.product(t, repeat=r)
     for op in list(operations):
         tot = compute(nb, op, goal)
-        print(tot, goal, op)
+        print(tot, goal)
         if goal == tot:
             res += tot
             break  
